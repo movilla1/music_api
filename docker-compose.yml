@@ -1,0 +1,19 @@
+version: "3.9"  # optional since v1.27.0
+services:
+    database:
+        image: postgres:13.2-alpine
+        environment:
+            POSTGRES_PASSWORD: cl0ckw0rk
+            POSTGRES_USER: music
+        volumes:
+            - clockwork:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+    api:
+        build:
+            dockerfile: Dockerfile
+            context: .
+        ports:
+            - 3000:3000
+volumes:
+    clockwork:
