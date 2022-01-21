@@ -21,13 +21,12 @@ class Song < ApplicationRecord
     classical: 5, country: 6,
     jazz: 7
   }
-
-  validates :name, presence: true, length: { minimum: 2 }
-  validates :duration, presence: true, numericality: { greater_than: 0, less_than: HALF_A_DAY_DURATION }
-  validates :genre, presence: true
-
   has_many :album_songs
   has_many :albums, through: :album_songs
   has_many :artist_songs
   has_many :artists, through: :artist_songs
+
+  validates :name, presence: true, length: { minimum: 2 }
+  validates :duration, presence: true, numericality: { greater_than: 0, less_than: HALF_A_DAY_DURATION }
+  validates :genre, presence: true
 end
