@@ -1,0 +1,152 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.6
+  Exclude:
+    - db/schema.rb
+    - db/data_schema.rb
+    - db/seeds.rb
+    - db/migrate/**/*
+    - db/data/**/*
+    - bin/**/*
+    - vendor/bundle/**/*
+Security/Eval:
+  Enabled: false
+Style/NumericPredicate:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: true
+  Exclude:
+    - app/models/**/*
+Rails/InverseOf:
+  Exclude:
+    - app/models/**/*
+Rails/RequestReferer:
+  Enabled: false
+Style/WordArray:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/BlockComments:
+  Enabled: false
+Style/NumericLiterals:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
+# There is not a great way to create model-less policies without being
+# able to extend Structs
+Style/StructInheritance:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Layout/LineLength:
+  Max: 120 # We all have big screens that show more space. Allowing longer lines is fine
+  Exclude:
+    - Gemfile
+    - config/routes.rb
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+Naming/FileName:
+  Enabled: false
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyle: space
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/HashAlignment:
+  Enabled: false
+Layout/ArrayAlignment:
+  Enabled: false
+Layout/ParameterAlignment:
+  Enabled: false
+Layout/ArgumentAlignment:
+  Enabled: false
+Layout/FirstHashElementIndentation:
+  Enabled: false
+# increase from default of 10
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+# Many of our methods are suffering with readability because 15 was too low.
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true
+Style/RedundantFetchBlock:
+  Enabled: true
+Style/SingleArgumentDig:
+  Enabled: false
+Rails/Output:
+  Exclude:
+    - lib/**/**/*
+    - db/seeds/**/*
+    - config/**/*
+Rails/OutputSafety:
+  Exclude:
+    - app/helpers/**/*
+Naming/VariableNumber:
+  Exclude:
+    - app/controllers/**/*
+Metrics/CyclomaticComplexity:
+  Max: 10
+Metrics/PerceivedComplexity:
+  Max: 10
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+Bundler/OrderedGems:
+  Enabled: false
+Lint/EmptyFile:
+  Enabled: false
+RSpec/NestedGroups:
+  Max: 4
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - test
+    - production
+    - dev
+    - qa
+    - demo
