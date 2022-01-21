@@ -1,28 +1,27 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
-# Table name: artists
+# Table name: albums
 #
 #  id         :bigint           not null, primary key
-#  biography  :text
+#  album_art  :string
 #  name       :string
+#  year       :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 require 'rails_helper'
 
-RSpec.describe Artist, type: :model do
+RSpec.describe Album, type: :model do
   describe "validations" do
-    let(:artist) { build(:artist) }
+    let(:album) { create(:album) }
 
     it "has a valid factory" do
-      expect(artist).to be_valid
+      expect(album).to be_valid
     end
 
-    it "doesn't validate empty names" do
-      artist.name = nil
-      expect(artist).not_to be_valid
+    it "doesn't validate with no name" do
+      album.name = nil
+      expect(album).not_to be_valid
     end
   end
 end
