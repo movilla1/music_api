@@ -3,7 +3,7 @@ class CreateSongs < ActiveRecord::Migration[6.1]
     create_table :songs do |t|
       t.string :name
       t.integer :duration
-      t.string :genre
+      t.integer :genre
       t.integer :track_numb
       t.boolean :featured
 

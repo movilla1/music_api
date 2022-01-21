@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_01_15_234734) do
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.integer "duration"
-    t.string "genre"
+    t.integer "genre"
     t.integer "track_numb"
     t.boolean "featured"
     t.datetime "created_at", precision: 6, null: false

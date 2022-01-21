@@ -68,4 +68,4 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-require 'spec/support/factory_bot'
+require 'support/factory_bot'
