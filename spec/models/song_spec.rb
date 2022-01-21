@@ -28,6 +28,11 @@ RSpec.describe Song, type: :model do
       expect(song).not_to be_valid
     end
 
+    it "doesn't validate with no genre" do
+      song.genre = nil
+      expect(song).not_to be_valid
+    end
+
     it "doesn't validate songs with duration = 0" do
       song.duration = 0
       expect(song).not_to be_valid
