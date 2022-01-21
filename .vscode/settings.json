@@ -1,0 +1,6 @@
+{
+  "go.autocompleteUnimportedPackages": true,
+  "solargraph.formatting": true,
+  "ruby.codeCompletion": "rcodetools",
+  "ruby.intellisense": "rubyLocate"
+}

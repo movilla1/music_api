@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: songs
+#
+#  id         :bigint           not null, primary key
+#  duration   :integer
+#  featured   :boolean
+#  genre      :string
+#  name       :string
+#  track_numb :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 FactoryBot.define do
   factory :song do
     name { Faker::Funny.name }

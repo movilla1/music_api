@@ -3,8 +3,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['CLOCKWORK_DATABASE_USER'].presence || 'clockwork' %>
-  password: <%= ENV['CLOCKWORK_DATABASE_PASSWORD'].presence || 'password' %>
+  host: <%= ENV['DATABASE_HOST'].presence || 'localhost' %>
+  username: <%= ENV['DATABASE_USER'].presence || 'music' %>
+  password: <%= ENV['DATABASE_PASSWORD'].presence || 'cl0ckw0rk' %>
 
 development:
   <<: *default
