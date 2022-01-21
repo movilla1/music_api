@@ -26,4 +26,6 @@ class Song < ApplicationRecord
   validates :duration, presence: true, numericality: { greater_than: 0, less_than: HALF_A_DAY_DURATION }
   validates :genre, presence: true
 
+  has_many :album_songs
+  has_many :albums, through: :album_songs
 end
