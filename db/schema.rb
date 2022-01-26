@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_024655) do
+ActiveRecord::Schema.define(version: 2022_01_21_025055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "album_artists", force: :cascade do |t|
+    t.bigint "album_id", null: false
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["album_id"], name: "index_album_artists_on_album_id"
+    t.index ["artist_id"], name: "index_album_artists_on_artist_id"
+  end
 
   create_table "album_songs", force: :cascade do |t|
     t.bigint "album_id"
@@ -30,6 +39,15 @@ ActiveRecord::Schema.define(version: 2022_01_21_024655) do
     t.string "album_art"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "artist_songs", force: :cascade do |t|
+    t.bigint "artist_id", null: false
+    t.bigint "song_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_artist_songs_on_artist_id"
+    t.index ["song_id"], name: "index_artist_songs_on_song_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -49,5 +67,9 @@ ActiveRecord::Schema.define(version: 2022_01_21_024655) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "album_artists", "albums"
+  add_foreign_key "album_artists", "artists"
   add_foreign_key "album_songs", "songs"
+  add_foreign_key "artist_songs", "artists"
+  add_foreign_key "artist_songs", "songs"
 end
