@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 class ArtistsController < ApplicationController
-  ARTIST_PAGE_SIZE = 10
-
   before_action :set_artist, except: %i[index create]
 
+  ARTIST_PAGE_SIZE = 10
+
   def index
-    render json: Artist.all.limit(ARTIST_PAGE_SIZE).offset(params[:page].to_i * ARTIST_PAGE_SIZE)
+    artists = Artist.all.limit(ARTIST_PAGE_SIZE).offset(params[:page].to_i * ARTIST_PAGE_SIZE)
+    render json: return_object("OK", artists)
   end
 
   def show
-    render json: @artist
+    render json: return_object("OK", @artist)
   end
 
   def update
@@ -48,10 +49,10 @@ class ArtistsController < ApplicationController
     params.require(:artist).permit(:name, :biography)
   end
 
-  def return_object(status, message = nil)
+  def return_object(status, payload = nil)
     {
       status: status,
-      message: message
+      payload: payload
     }
   end
 end

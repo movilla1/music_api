@@ -14,9 +14,9 @@
 FactoryBot.define do
   factory :song do
     name { Faker::FunnyName.name }
-    duration { rand(240) }
+    duration { rand(10..240) }
     genre { %i[rock pop funk reggae classical country jazz].sample }
-    track_numb { rand(33) + 1 }
+    track_numb { rand(1..33) }
     featured { false }
 
     trait :featured do

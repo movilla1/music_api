@@ -4,6 +4,7 @@ class AlbumsController < ApplicationController
   before_action :set_album, except: %i[create index]
 
   ALBUM_PAGE_SIZE = 12
+
   def index
     albums = Album.all.limit(ALBUM_PAGE_SIZE).offset(params[:page].to_i * ALBUM_PAGE_SIZE)
     render json: album_object_response("OK", albums)

@@ -17,6 +17,6 @@ FactoryBot.define do
   factory :album do
     name { Faker::Ancient.hero }
     year { Time.current.year }
-    album_art { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'album_art.jpg')) }
+    album_art { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/album_art.jpg')) }
   end
 end
