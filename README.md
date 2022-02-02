@@ -19,3 +19,11 @@ This is an API to manage music tracks, artists and albums
 * Database initialization
 standard `rails db:migrate; rails db:seed` to get the initial db structure and data
 
+
+# Endpoints for the API
+All endpoints work in a REST interface, the following lines are usage examples
+## Artists
+
+## Albums
+
+## Songs

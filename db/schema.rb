@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_025055) do
   end
 
   create_table "album_songs", force: :cascade do |t|
-    t.bigint "album_id"
+    t.bigint "album_id", null: false
     t.bigint "song_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_025055) do
 
   add_foreign_key "album_artists", "albums"
   add_foreign_key "album_artists", "artists"
+  add_foreign_key "album_songs", "albums"
   add_foreign_key "album_songs", "songs"
   add_foreign_key "artist_songs", "artists"
   add_foreign_key "artist_songs", "songs"

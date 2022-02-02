@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PagesController < ApplicationController
+class StaticController < ApplicationController
   def root
     render json: { message: "No public endpoint available" }
   end
