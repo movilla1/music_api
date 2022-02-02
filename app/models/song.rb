@@ -29,4 +29,6 @@ class Song < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2 }
   validates :duration, presence: true, numericality: { greater_than: 0, less_than: HALF_A_DAY_DURATION }
   validates :genre, presence: true
+
+  accepts_nested_attributes_for :artists
 end
