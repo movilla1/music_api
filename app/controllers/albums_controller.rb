@@ -31,6 +31,32 @@ class AlbumsController < ApplicationController
     end
   end
 
+  # POST /albums/:album_id/bulk_songs
+  # This function takes a posted array with the following format:
+  # [ [op, song_id] ]
+  # where op can be 'add' or 'remove'
+  def bulk_songs
+    if BulkOperations::process_array(AlbumSong, "album_id", params[:songs], "song_id", params[:album_id])
+      render json: album_object_response("OK", "Songs added to album #{params[:album_id]}")
+    else
+      render json: album_object_response("FAIL", "Failed to add songs to album #{params[:album_id]}")
+    end
+  end
+
+  # POST /albums/:album_id/bulk_songs_text
+  # Params:
+  # @album_id: Album being updated
+  # @songs_data: Array with the following format:
+  #    [ [name:string, track_num:int, duration:int, genre:string, featured:bool], [...] ]
+  def bulk_songs_text
+    album_id = params[:album_id]
+    if BulkAlbumOperation::process_songs(album_id, params[:songs_data])
+      render json: album_object_response("OK", "Songs by text added to album #{album_id}")
+    else
+      render json: album_object_response("FAIL", "Failed to add songs by text to album #{params[:album_id]}")
+    end
+  end
+
   def destroy
     if @album&.destroy
       render json: album_object_response("OK", message: "Album Destroyed")
@@ -46,7 +72,10 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:name, :year, :album_art)
+    params.require(:album).permit(
+      :name, :year, :album_art,
+      songs: [:duration, :genre, :featured,:id, :name, :track_numb]
+    )
   end
 
   def album_object_response(status, payload)

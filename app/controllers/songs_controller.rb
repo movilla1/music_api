@@ -39,6 +39,22 @@ class SongsController < ApplicationController
     end
   end
 
+
+  # This function takes a posted array with the following format:
+  # [ [op, song_id] ]
+  # where op can be 'add' or 'remove'
+  def bulk_artists
+    if BulkOperations::process_array(ArtistSong, "artist_id", params[:artists], "song_id", params[:song_id])
+      render json: album_object_response("OK", "Songs added to artist #{params[:song_id]}")
+    else
+      render json: album_object_response("FAIL", "Failed to add artists to song #{params[:song_id]}")
+    end
+  end
+
+  def bulk_artist_text
+
+  end
+
   private
 
   def set_song
@@ -46,7 +62,11 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:song).permit(:name, :duration, :genre, :track_numb, :featured)
+    params.require(:song).permit(
+      :name, :duration, :genre,
+      :track_numb, :featured,
+      artists: [:id, :name, :biography]
+    )
   end
 
   def song_object_response(status, payload)
