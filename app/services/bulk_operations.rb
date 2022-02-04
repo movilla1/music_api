@@ -18,8 +18,8 @@ class BulkOperations
   # adds new record for the model class
   def self.create_new_record(model_class, source_column, source_id, destination_column, destination_id)
     new_record = model_class.new
-    new_record.send(destination_column, destination_id)
-    new_record.send(source_column, source_id)
+    new_record.send "#{destination_column}=", destination_id
+    new_record.send "#{source_column}=", source_id
     new_record.save
   end
 
